@@ -4,7 +4,10 @@
   "description": "Generic NodeJS logging class",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test/**/*.spec.js",
+    "doc": "./node_modules/jsdoc/jsdoc.js lib/* -d docs -r README.md && git add docs && git commit -m 'Generated Docs'",
+    "preversion": "travis lint .travis.yml && npm run doc",
+    "postversion": "git push --follow-tags"
   },
   "repository": {
     "type": "git",
@@ -22,5 +25,11 @@
   "license": "MIT",
   "dependencies": {
     "colors": "^1.1.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "jsdoc": "^3.4.3",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7"
   }
 }
