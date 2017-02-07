@@ -1,0 +1,26 @@
+{
+  "name": "cmr1-logger",
+  "version": "0.0.1",
+  "description": "Generic NodeJS logging class",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@githubcmr1:cmr1/node-logger.git"
+  },
+  "keywords": [
+    "log",
+    "logger",
+    "logging",
+    "colors",
+    "output",
+    "cli"
+  ],
+  "author": "Charlie McClung",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.1.2"
+  }
+}
