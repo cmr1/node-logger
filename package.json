@@ -1,6 +1,6 @@
 {
   "name": "cmr1-logger",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generic NodeJS logging class",
   "main": "index.js",
   "scripts": {
