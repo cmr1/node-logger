@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@githubcmr1:cmr1/node-logger.git"
+    "url": "git@github.com:cmr1/node-logger.git"
   },
   "keywords": [
     "log",
