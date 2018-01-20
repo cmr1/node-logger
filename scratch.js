@@ -2,7 +2,7 @@
 
 const Logger = require('./lib/logger');
 
-const settings = {
+const config = {
   "log": {
     "stamp": true,
     "prefix": "",
@@ -33,8 +33,12 @@ const settings = {
   }
 };
 
-const myLogger = new Logger(settings);
+const myLogger = new Logger({
+  verbose: true
+});
 
-Object.keys(settings).forEach(method => {
+myLogger.enableLogging(config);
+
+Object.keys(config).forEach(method => {
   myLogger[method](`Testing '${method}' logger method.`);
 });
