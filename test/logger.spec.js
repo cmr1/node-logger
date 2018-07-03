@@ -1,74 +1,72 @@
-'use strict';
+/* eslint-env mocha */
+const expect = require('chai').expect
+const sinon = require('sinon')
 
-const expect = require('chai').expect;
-const sinon = require('sinon');
+const Logger = require('../')
 
-const Logger = require('../');
-
-describe('Logger', function() {
-  let testLogger = null;
+describe('Logger', function () {
   const testConfig = {
-    "log": {
-      "stamp": true,
-      "prefix": "",
-      "color": "white"
+    'log': {
+      'stamp': true,
+      'prefix': '',
+      'color': 'white'
     },
-    "warn": {
-      "stamp": true,
-      "throws": false,
-      "prefix": "WARN:",
-      "color": "yellow"
+    'warn': {
+      'stamp': true,
+      'throws': false,
+      'prefix': 'WARN:',
+      'color': 'yellow'
     },
-    "error": {
-      "stamp": true,
-      "throws": true,
-      "prefix": "ERROR:",
-      "color": "red"
+    'error': {
+      'stamp': true,
+      'throws': true,
+      'prefix': 'ERROR:',
+      'color': 'red'
     },
-    "debug": {
-      "stamp": true,
-      "verbose": true,
-      "prefix": "DEBUG:",
-      "color": "cyan"
+    'debug': {
+      'stamp': true,
+      'verbose': true,
+      'prefix': 'DEBUG:',
+      'color': 'cyan'
     },
-    "success": {
-      "stamp": true,
-      "prefix": "SUCCESS:",
-      "color": "green"
+    'success': {
+      'stamp': true,
+      'prefix': 'SUCCESS:',
+      'color': 'green'
     }
-  };
+  }
 
-  beforeEach(function() {
-    this.sinon = sinon.sandbox.create();
-  });
+  beforeEach(function () {
+    this.sinon = sinon.sandbox.create()
+  })
 
-  it('should support dynamic logging methods', function() {
+  it('should support dynamic logging methods', function () {
     const testLogger = new Logger({
       allowForceNoThrow: true,
       verbose: true
-    });
+    })
 
-    testLogger.enableLogging(testConfig);
+    testLogger.enableLogging(testConfig)
 
     Object.keys(testConfig).forEach(method => {
-      const methodConfig = testConfig[method];
-      const consoleMethod = (typeof console[method] === 'function' ? method : 'log');
+      const methodConfig = testConfig[method]
+      const consoleMethod = (typeof console[method] === 'function' ? method : 'log')
 
-      this.sinon.stub(console, consoleMethod);
+      this.sinon.stub(console, consoleMethod)
 
       if (methodConfig.throws) {
-        expect(testLogger[method]).to.throw(Error);
+        expect(testLogger[method]).to.throw(Error)
       } else {
-        testLogger[method](`Calling: ${method}`);            
+        testLogger[method](`Calling: ${method}`)
       }
 
-      expect(console[consoleMethod].called).to.be.true;
+      expect(console[consoleMethod].called).to.eql(true)
 
-      this.sinon.restore();
-    });
-  });
+      this.sinon.restore()
+    })
+  })
 
-  afterEach(function() {
-    this.sinon.restore();
-  });
-});
+  afterEach(function () {
+    this.sinon.restore()
+  })
+})
